@@ -5,7 +5,7 @@
         + [Skip to Town Map]
         -> Map_Selection
         
-        === Arriving_Home
+        = Arriving_Home
                 Late 1960s, Massachusetts.
                 
                 Your mom is standing on the porch.
@@ -13,7 +13,7 @@
                 + [Talk to Mom]
                 -> Mom1
         
-        === Mom1
+        = Mom1
                 Dana: Mom! Look! God sent me a baby!
                 Mom: ...Excuse me?
                 Dana: Her name is Kimmy!
@@ -112,7 +112,7 @@
 
 
 // This is the map selection screen
-=== Map_Selection ===
+= Map_Selection 
 This is the town map! So many places for Kimmy and I to go!
     + [Go Downtown]
         Guess we'll go downtown today!
@@ -132,7 +132,7 @@ This is the town map! So many places for Kimmy and I to go!
 
 
 // Kimmy's House is where Kimmy lives hahahaha
-=== Kimmy_House ===
+= Kimmy_House 
 Maybe I should check in with Kimmy's parents again.
 
     + [Talk to Dean] -> Dean
@@ -253,7 +253,7 @@ Maybe I should check in with Kimmy's parents again.
         
         
 
-=== Playground ===
+= Playground 
 The playground is always exciting! Ugh, it's the Bicycle queen.
 
     + {not BlytheGame} [Talk to Blythe] -> Blythe
@@ -529,7 +529,7 @@ The playground is always exciting! Ugh, it's the Bicycle queen.
                 -> Playground
 
 
-=== Downtown ===
+= Downtown 
 Downtown is always bustling with so many people. Who should we talk with first?
 
     + [Talk to Comic Boy] -> Comic_Boy
@@ -550,7 +550,7 @@ Downtown is always bustling with so many people. Who should we talk with first?
         -> Downtown
         
 
-=== Home ===
+= Home 
 You arrive back home. I wonder if Mom is cooking anything yummy! You can see a few people mulling about.
 
     + [Talk to Mom] -> Dana_Mom
