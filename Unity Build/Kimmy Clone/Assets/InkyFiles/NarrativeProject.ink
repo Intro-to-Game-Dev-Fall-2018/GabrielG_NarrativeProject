@@ -1,259 +1,12 @@
 // Intro Scenario
         You have found a young child while wandering about town. You rush home to tell your mom the good news!
-        + [Go Home]
-        -> Arriving_Home
-        + [Skip to Town Map]
-        -> Map_Selection
-        
-        === Arriving_Home
-                Late 1960s, Massachusetts.
-                
-                Your mom is standing on the porch.
-                
-                + [Talk to Mom]
-                -> Mom1
-        
-        === Mom1
-                Dana: Mom! Look! God sent me a baby!
-                Mom: ...Excuse me?
-                Dana: Her name is Kimmy!
-                -> Kimmy1
-        
-            = Kimmy1
-                + [It seems that Kimmy has something to say.]
-                Kimmy: ...
-                -> Nope
-        
-        = Nope
-        * {X} [...] -> Y
-        * {not X} [...] -> X
-        
-        = X
-                Mom: That… No, Dana. God did not send you a baby.
-                Dana: What do you mean…? You said God sends people babies sometimes! You told me that.
-                Mom: Well… nevermind what I said. It doesn’t apply to you. God isn’t about to send you a baby anytime soon, trust me.
-                + [Assert Truth] -> AssertTruth
-            = AssertTruth
-                Dana: What! Why? I wished for a baby, and he granted my wish. Isn’t it obvious?
-                Mom: Where did you find this little girl? Honey, where’s your house?
-                -> Kimmy1
-        
-        = Y
-                Mom: Kimmy, can you tell me where your parents are?
-                Kimmy: I can go home later if I want…
-                Dana: Well maybe God didn’t send her, but she came out of nowhere! Kimmy, you just… appeared, right? Where did you come from?
-                Kimmy: Ferry Street... I untied myself from the porch so I could go for a walk…
-                +[How strange] -> Odd
-        
-            = Odd
-                Mom: It’s ok dear, let’s go to your house Kimmy… you said it’s on Ferry Street? Your parents are probably worried.
-                
-                +[Head to Kimmy's house] -> Kimmy_House_Scene
-        
-        = Kimmy_House_Scene
-                Dana: I’m sorry… I thought God sent me a baby and I got so excited…
-                Kimmy's Mom: Oh, don’t worry. Thank you for finding Kimmy and walking her home. What's your name, dear?
-                + [Introduce Self] -> Introduction
-            = Introduction
-                Dana: I’m Dana…
-                Kimmy's Mom: I don’t know many kids as responsible as you, walking Kimmy all the way home. I hope you two can be friends. I know Kimmy could learn a lot from you.
-                Kimmy: My… friend?
-                + [Be Kimmy's Friend] -> Befriend
-            = Befriend
-                Dana: Yes! I’d love to be friends, Kimmy. Can I come by and play with you tomorrow?
-                Kimmy's Mom: I’ve been looking for a babysitter, actually. Her grandma was helping with that before, but she… well, she can’t anymore.
-                Kimmy's Mom: Kimmy’s normally alright in her harness on the porch, but she’s getting a little old for that…
-                Kimmy's Mom: If you’d like to play with Kimmy tomorrow, I’d be happy to pay you a quarter to keep an eye on her.
-                + [Take the Job!] -> Accept
-            = Accept
-                Dana: Wow! Yes, please! I’d love to!
-                Kimmy's Mom: My work schedule is a little… hectic. It’d be great to have you by in the morning.
-                Dana: I’ll be here first thing! Wow, I didn’t expect to land a job today. Thanks so much!
-                + [Ask Mom for Permission] -> MomPermission
-            = MomPermission
-                Mom: Well, that all sounds good to me. A summer job will be a nice way to keep busy. Now then, let’s leave this nice family to their dinner.
-                + [Say Goodbye] -> Goodbye
-            = Goodbye
-                Dana: Ok. Bye bye Kimmy, and Mrs...?
-                Kimmy's Mom: Mrs. Munro. Again, thank you for giving Kimmy a hand. It was nice meeting you, Mrs. Navarro.
-                Mom: Likewise.
-                Kimmy: Bye bye.
-                + [Head back Home] -> HeadOut
-            = HeadOut
-                You head back home. You have trouble sleeping because you are so excited to hang out with Kimmy Tomorrow. 
-                Next morning, bright and early, you meet Kimmy outside her house!
-                + [Talk to Kimmy] -> KimmyTalk
-            = KimmyTalk
-                Dana: Mornin’ Kimmy! I’m here to babysit, like I promised! Is your mom around?
-                Kimmy: My mommy’s not inside. She left already.
-                + [Ask Kimmy what to do] -> AskKimmy
-            = AskKimmy
-                Dana: Oh, ok… Um, well… Is there anything you’d like to do today, Kimmy?
-                Kimmy: No… I don’t know.
-                Dana: That’s ok, do you have a friend you’d like to visit?
-                Kimmy: No...
-                Dana: Should we watch TV or something in your house?
-                Kimmy: We don’t have a TV. My dad is in there too, so we should go play somewhere else. He’s busy.
-                + [Come up with a brand new idea!] -> NewIdea
-            = NewIdea
-                Dana: Ok then! Want to walk around and play some games with the other kids?
-                Kimmy: Other kids…?
-                Dana: You know, the neighborhood kids. Like Donna. Isn’t she your age? You’re both going to be in Kindergarten, right?
-                Kimmy: Oh, yeah… I don’t think Donna is my friend though, so she probably wouldn’t want to play...
-                + [Make Kimmy Feel Better] -> KimmyFeelBetter
-            = KimmyFeelBetter
-                Dana: Well, let’s go become her friend! There's lots of other kids around, too. Like Anthony. I know him from school.
-                Dana: Come on, let’s go!
-                Kimmy: ...!
-                + [Head out to Town] -> Town
-        = Town
-                It's time for a day of adventure with Kimmy. What to do next?
-                -> Map_Selection
-
-
-// This is the map selection screen
-=== Map_Selection ===
-This is the town map! So many places for Kimmy and I to go!
-    + [Go Downtown]
-        Guess we'll go downtown today!
-        -> Downtown
-        
-    + [Go to Kimmy's House]
-        Maybe we should check in with Kimmy's parents!
-        -> Kimmy_House
-        
-    + [Go to the Playground]
-        Let's go play!
+        //+ [Go Home]
+        //-> Arriving_Home
+        + [Let's go have fun at the playground!]
         -> Playground
         
-    + [Go Home]
-        I'm feeling tired, let's go home!
-        -> Home
 
-
-// Kimmy's House is where Kimmy lives hahahaha
-=== Kimmy_House ===
-Maybe I should check in with Kimmy's parents again.
-
-    + [Talk to Dean] -> Dean
-
-    + {not Gameplay} [Talk to Donna] -> Donna
-    + {Gameplay} [Talk to Donna again!] -> Donna_Friend_Success
-    
-    + [Go back to Map] -> Map_Selection
-
-
-    = Dean
-            Dean: Hey, Kid.
-            Dana: Hi, Dean. This is Kimmy. I’m babysitting her now.
-            Dean: Well lookit that, aren’t you all grown up. You gettin’ paid?
-            + [Answer] -> Answer
-        = Answer
-            Kimmy: My mom pays Dana a quarter a day.
-            Dana: That’s right! I’m here to buy some things… I mean, I haven’t gotten paid yet. This is my first day. But I have some money saved up!
-            Dean: Hah, I wish I had that kinda discipline. I blew my budget on fabric last week.
-            + [Share Plans] -> PlanShare
-        = PlanShare
-            Dana: I need to save up money. For college, you know! My mom would get so mad if I didn’t plan ahead.
-            Dean: Hah! Your mom’s got the right idea. I wish I’d saved up for college.
-            + [Inquire] -> Inquire
-        = Inquire
-            Dana: So what did you spend all your money on? Your sewing classes?
-            Dean: Nah, that’s over. I’m workin’ on some Halloween costumes for my cousins… and some new pants for myself. You know, gotta apply those skills somehow.
-            Kimmy: I didn’t know people made clothes!
-            + [Seriously Kimmy?] -> KimmySurprise
-        = KimmySurprise 
-            Dean: They do, Kimmy, they do. I make sweaters, dresses, hats--you name it.
-            Dana: You should sell your clothes at Jordan Marsh! That’s where I always find the nicest clothes.
-            Dean: Hah! That’s a long ways off for me. But maybe someday… anyways, what can I get for ya?
-            
-            + [ Check Store ] -> Store
-            + [ Return to Kimmy's House ] -> Kimmy_House
-            
-            = Store
-                
-                + { not BuyGame} [ Buy Game ] 
-                      -> BuyGame
-                      
-                + { BuyGame } [ Buy Game ] 
-                        -> AlreadyBought
-                        
-                + [ Leave ] -> Leave
-                
-                    = Leave
-                        Dana: Cya Later!
-                        + [ Return to Kimmy's House ] -> Kimmy_House
-                    
-                    = BuyGame
-                        Alright, I'll take this game!
-                        -> Store
-                    = AlreadyBought
-                        I already bought a game!
-                        -> Store
-   
-    
-    = Donna
-            Kimmy: Hi Donna.
-            Donna: What happened, Kimmy? Did you untie yourself from the porch again?
-            Kimmy: ...
-            + [ Help Kimmy Out ] -> HelpKimmy
-        = HelpKimmy
-            Dana: Hi Donna! I’m babysitting Kimmy now, so--
-            Donna: So you untied Kimmy from the porch? Better not let her parents catch you.
-            + [ Defend Kimmy ] -> DefendKimmy
-        = DefendKimmy
-            Dana: First of all, I’m her babysitter. Second, she’s perfectly able to untie herself. She’s too old for that thing now, even her mom thinks so.
-            Donna: She should probably stay on her porch. We’re the same age, but my mom takes me everywhere so I won’t get lost. I bet Kimmy would get lost if she wandered too far.
-            Dana: I don’t know about that. Anyways, I was just going to ask if you wanna play with us... but I feel like you're being mean to Kimmy.
-            Donna: Oh, no. I'm just being honest!
-            + [ Ask to Play Game ] -> AskDonna
-        = AskDonna
-            Dana: Ok... well, I hope you two can get along, since you're neighbors... want to play a game with us?
-            Donna: Well, I’m trying to avoid Harold so it’s probably good to look busy. He keeps trying to tell me that my ears look childish. He is so snobby.
-            Kimmy: I like your ears.
-            Donna: Oh, thanks. They’re new. Anyways, I wanna play a new game.
-            + [Play Game] -> Gameplay
-            + [Some other Time] -> NoGamePlay
-        = Gameplay
-            You play an exciting game with Donna!
-            Donna: Wow! This was a lot of fun! We should play again sometime!
-            + [ Return to Kimmy's House ] -> Kimmy_House
-        = NoGamePlay
-            Donna: Oh, okay, some other time then!
-            + [ Return to Kimmy's House ] -> Kimmy_House
-        
-    = Donna_Friend_Success
-            Donna: ...Are you gonna walk to Jordan Marsh? That’s where my babysitter used to take me.
-            + [ Answer Donna ] -> AnswerDonna
-        = AnswerDonna
-            Dana: Maybe! Kimmy doesn't seem to know too many people around town though, so I think we should save big trips for later.
-            Donna: Playing is fine, but isn’t it boring sometimes? I need more friends  who will go with me to Jordan Marsh. I like going shopping there. I hide in the clothes racks sometimes.
-            Kimmy: Dad took me there once. He needed a new leather jacket. But then he bought another new guitar and mom got mad when we came home.
-            + [Comment] -> Comment
-        = Comment
-            Dana: Haha, your dad is so weird.
-            Donna: I don’t see your dad around much anymore, but I guess that’s because I’m not out on the porch like I used to be.
-            Kimmy: Donna used to be in a harness outside, like me.
-            Donna: Yeah I used to wear a harness attached to the front door when my mom was cooking or doing laundry. It was so embarrassing.
-            Donna: My mom said I’m too big for the harness. I go bike riding a lot now. I went by myself to Jordan Marsh yesterday and got these ears…
-            + [ Compliment Ears ] -> ComplimentEars
-        = ComplimentEars
-            Kimmy: I like them.
-            Dana: I like riding my bike to Jordan Marsh too! Sometimes I’ll buy a ribbon if I save up.
-            Kimmy: I’ve never worn a ribbon.
-            Dana: Wow! Really? I can get you one, Kimmy, don’t worry.
-            + [Refuse Ribbon] -> RefuseRibbon
-        = RefuseRibbon
-            Kimmy: No thank you, I’m not supposed to spend any money. I don’t have any anyways.
-            Dana: I’ll save up and get you one!
-            Donna: Kimmy, you would look nice in a ribbon. Cat ears too probably.
-            Kimmy: …Maybe.
-            + [ Return to Kimmy's House ] -> Kimmy_House
-            
-        
-        
-
-=== Playground ===
+= Playground 
 The playground is always exciting! Ugh, it's the Bicycle queen.
 
     + {not BlytheGame} [Talk to Blythe] -> Blythe
@@ -266,7 +19,7 @@ The playground is always exciting! Ugh, it's the Bicycle queen.
     + {LindaGame}[Talk to Linda again] -> LindaFriend
     
     + {LindaGame}{JaneyGame}{BlytheGame} [Guess we made friends with everyone] -> Map_Selection
-    + [Go back to Map] -> Map_Selection
+    + [Go Home for the Day] -> Map_Selection
 
     
     // Blythe's Dialogue
@@ -330,7 +83,6 @@ The playground is always exciting! Ugh, it's the Bicycle queen.
                     + [ Return to Playground ] -> Playground
             
             
-    
     
     // Janey's Dialogue
         = Janey
@@ -526,10 +278,41 @@ The playground is always exciting! Ugh, it's the Bicycle queen.
             = KimmyOpinion
                 Kimmy: There’s no mean dogs...
                 Dana: I got chased once and had to climb a tree to escape… I guess I’ll try petting next time.
+                + [Let's return to the playground] 
                 -> Playground
 
 
-=== Downtown ===
+
+
+
+
+// Here is all the other dialogue I translated for Kimmy. However, I will only
+// be using the Playground area
+
+
+// This is the map selection screen
+= Map_Selection 
+This is the town map! So many places for Kimmy and I to go!
+    
+    // + [Go Downtown]
+        Guess we'll go downtown today!
+        -> Downtown
+        
+    // + [Go to Kimmy's House]
+        Maybe we should check in with Kimmy's parents!
+        -> Kimmy_House
+        
+    + [Go to the Playground]
+        Let's go play!
+        -> Playground
+        
+    // + [Go Home]
+        I'm feeling tired, let's go home!
+        -> Home
+
+
+
+= Downtown 
 Downtown is always bustling with so many people. Who should we talk with first?
 
     + [Talk to Comic Boy] -> Comic_Boy
@@ -550,7 +333,7 @@ Downtown is always bustling with so many people. Who should we talk with first?
         -> Downtown
         
 
-=== Home ===
+= Home 
 You arrive back home. I wonder if Mom is cooking anything yummy! You can see a few people mulling about.
 
     + [Talk to Mom] -> Dana_Mom
@@ -564,3 +347,231 @@ You arrive back home. I wonder if Mom is cooking anything yummy! You can see a f
         This person doesn't want to talk to you right now. Maybe you should go to another part of town.
         -> Home
 
+// Kimmy's House is where Kimmy lives hahahaha
+= Kimmy_House 
+Maybe I should check in with Kimmy's parents again.
+
+    + [Talk to Dean] -> Dean
+
+    + {not Gameplay} [Talk to Donna] -> Donna
+    + {Gameplay} [Talk to Donna again!] -> Donna_Friend_Success
+    
+    + [Go back to Map] -> Map_Selection
+
+
+    = Dean
+            Dean: Hey, Kid.
+            Dana: Hi, Dean. This is Kimmy. I’m babysitting her now.
+            Dean: Well lookit that, aren’t you all grown up. You gettin’ paid?
+            + [Answer] -> Answer
+        = Answer
+            Kimmy: My mom pays Dana a quarter a day.
+            Dana: That’s right! I’m here to buy some things… I mean, I haven’t gotten paid yet. This is my first day. But I have some money saved up!
+            Dean: Hah, I wish I had that kinda discipline. I blew my budget on fabric last week.
+            + [Share Plans] -> PlanShare
+        = PlanShare
+            Dana: I need to save up money. For college, you know! My mom would get so mad if I didn’t plan ahead.
+            Dean: Hah! Your mom’s got the right idea. I wish I’d saved up for college.
+            + [Inquire] -> Inquire
+        = Inquire
+            Dana: So what did you spend all your money on? Your sewing classes?
+            Dean: Nah, that’s over. I’m workin’ on some Halloween costumes for my cousins… and some new pants for myself. You know, gotta apply those skills somehow.
+            Kimmy: I didn’t know people made clothes!
+            + [Seriously Kimmy?] -> KimmySurprise
+        = KimmySurprise 
+            Dean: They do, Kimmy, they do. I make sweaters, dresses, hats--you name it.
+            Dana: You should sell your clothes at Jordan Marsh! That’s where I always find the nicest clothes.
+            Dean: Hah! That’s a long ways off for me. But maybe someday… anyways, what can I get for ya?
+            
+            + [ Check Store ] -> Store
+            + [ Return to Kimmy's House ] -> Kimmy_House
+            
+            = Store
+                
+                + { not BuyGame} [ Buy Game ] 
+                      -> BuyGame
+                      
+                + { BuyGame } [ Buy Game ] 
+                        -> AlreadyBought
+                        
+                + [ Leave ] -> Leave
+                
+                    = Leave
+                        Dana: Cya Later!
+                        + [ Return to Kimmy's House ] -> Kimmy_House
+                    
+                    = BuyGame
+                        Alright, I'll take this game!
+                        -> Store
+                    = AlreadyBought
+                        I already bought a game!
+                        -> Store
+   
+    
+    = Donna
+            Kimmy: Hi Donna.
+            Donna: What happened, Kimmy? Did you untie yourself from the porch again?
+            Kimmy: ...
+            + [ Help Kimmy Out ] -> HelpKimmy
+        = HelpKimmy
+            Dana: Hi Donna! I’m babysitting Kimmy now, so--
+            Donna: So you untied Kimmy from the porch? Better not let her parents catch you.
+            + [ Defend Kimmy ] -> DefendKimmy
+        = DefendKimmy
+            Dana: First of all, I’m her babysitter. Second, she’s perfectly able to untie herself. She’s too old for that thing now, even her mom thinks so.
+            Donna: She should probably stay on her porch. We’re the same age, but my mom takes me everywhere so I won’t get lost. I bet Kimmy would get lost if she wandered too far.
+            Dana: I don’t know about that. Anyways, I was just going to ask if you wanna play with us... but I feel like you're being mean to Kimmy.
+            Donna: Oh, no. I'm just being honest!
+            + [ Ask to Play Game ] -> AskDonna
+        = AskDonna
+            Dana: Ok... well, I hope you two can get along, since you're neighbors... want to play a game with us?
+            Donna: Well, I’m trying to avoid Harold so it’s probably good to look busy. He keeps trying to tell me that my ears look childish. He is so snobby.
+            Kimmy: I like your ears.
+            Donna: Oh, thanks. They’re new. Anyways, I wanna play a new game.
+            + [Play Game] -> Gameplay
+            + [Some other Time] -> NoGamePlay
+        = Gameplay
+            You play an exciting game with Donna!
+            Donna: Wow! This was a lot of fun! We should play again sometime!
+            + [ Return to Kimmy's House ] -> Kimmy_House
+        = NoGamePlay
+            Donna: Oh, okay, some other time then!
+            + [ Return to Kimmy's House ] -> Kimmy_House
+        
+    = Donna_Friend_Success
+            Donna: ...Are you gonna walk to Jordan Marsh? That’s where my babysitter used to take me.
+            + [ Answer Donna ] -> AnswerDonna
+        = AnswerDonna
+            Dana: Maybe! Kimmy doesn't seem to know too many people around town though, so I think we should save big trips for later.
+            Donna: Playing is fine, but isn’t it boring sometimes? I need more friends  who will go with me to Jordan Marsh. I like going shopping there. I hide in the clothes racks sometimes.
+            Kimmy: Dad took me there once. He needed a new leather jacket. But then he bought another new guitar and mom got mad when we came home.
+            + [Comment] -> Comment
+        = Comment
+            Dana: Haha, your dad is so weird.
+            Donna: I don’t see your dad around much anymore, but I guess that’s because I’m not out on the porch like I used to be.
+            Kimmy: Donna used to be in a harness outside, like me.
+            Donna: Yeah I used to wear a harness attached to the front door when my mom was cooking or doing laundry. It was so embarrassing.
+            Donna: My mom said I’m too big for the harness. I go bike riding a lot now. I went by myself to Jordan Marsh yesterday and got these ears…
+            + [ Compliment Ears ] -> ComplimentEars
+        = ComplimentEars
+            Kimmy: I like them.
+            Dana: I like riding my bike to Jordan Marsh too! Sometimes I’ll buy a ribbon if I save up.
+            Kimmy: I’ve never worn a ribbon.
+            Dana: Wow! Really? I can get you one, Kimmy, don’t worry.
+            + [Refuse Ribbon] -> RefuseRibbon
+        = RefuseRibbon
+            Kimmy: No thank you, I’m not supposed to spend any money. I don’t have any anyways.
+            Dana: I’ll save up and get you one!
+            Donna: Kimmy, you would look nice in a ribbon. Cat ears too probably.
+            Kimmy: …Maybe.
+            + [ Return to Kimmy's House ] -> Kimmy_House
+            
+        
+        
+        
+        
+        // Here is the intro scenario
+        = Arriving_Home
+                Late 1960s, Massachusetts.
+                
+                Your mom is standing on the porch.
+                
+                + [Talk to Mom]
+                -> Mom1
+        
+        = Mom1
+                Dana: Mom! Look! God sent me a baby!
+                Mom: ...Excuse me?
+                Dana: Her name is Kimmy!
+                -> Kimmy1
+        
+            = Kimmy1
+                + [It seems that Kimmy has something to say.]
+                Kimmy: ...
+                -> Nope
+        
+        = Nope
+        * {X} [...] -> Y
+        * {not X} [...] -> X
+        
+        = X
+                Mom: That… No, Dana. God did not send you a baby.
+                Dana: What do you mean…? You said God sends people babies sometimes! You told me that.
+                Mom: Well… nevermind what I said. It doesn’t apply to you. God isn’t about to send you a baby anytime soon, trust me.
+                + [Assert Truth] -> AssertTruth
+            = AssertTruth
+                Dana: What! Why? I wished for a baby, and he granted my wish. Isn’t it obvious?
+                Mom: Where did you find this little girl? Honey, where’s your house?
+                -> Kimmy1
+        
+        = Y
+                Mom: Kimmy, can you tell me where your parents are?
+                Kimmy: I can go home later if I want…
+                Dana: Well maybe God didn’t send her, but she came out of nowhere! Kimmy, you just… appeared, right? Where did you come from?
+                Kimmy: Ferry Street... I untied myself from the porch so I could go for a walk…
+                +[How strange] -> Odd
+        
+            = Odd
+                Mom: It’s ok dear, let’s go to your house Kimmy… you said it’s on Ferry Street? Your parents are probably worried.
+                
+                +[Head to Kimmy's house] -> Kimmy_House_Scene
+        
+        = Kimmy_House_Scene
+                Dana: I’m sorry… I thought God sent me a baby and I got so excited…
+                Kimmy's Mom: Oh, don’t worry. Thank you for finding Kimmy and walking her home. What's your name, dear?
+                + [Introduce Self] -> Introduction
+            = Introduction
+                Dana: I’m Dana…
+                Kimmy's Mom: I don’t know many kids as responsible as you, walking Kimmy all the way home. I hope you two can be friends. I know Kimmy could learn a lot from you.
+                Kimmy: My… friend?
+                + [Be Kimmy's Friend] -> Befriend
+            = Befriend
+                Dana: Yes! I’d love to be friends, Kimmy. Can I come by and play with you tomorrow?
+                Kimmy's Mom: I’ve been looking for a babysitter, actually. Her grandma was helping with that before, but she… well, she can’t anymore.
+                Kimmy's Mom: Kimmy’s normally alright in her harness on the porch, but she’s getting a little old for that…
+                Kimmy's Mom: If you’d like to play with Kimmy tomorrow, I’d be happy to pay you a quarter to keep an eye on her.
+                + [Take the Job!] -> Accept
+            = Accept
+                Dana: Wow! Yes, please! I’d love to!
+                Kimmy's Mom: My work schedule is a little… hectic. It’d be great to have you by in the morning.
+                Dana: I’ll be here first thing! Wow, I didn’t expect to land a job today. Thanks so much!
+                + [Ask Mom for Permission] -> MomPermission
+            = MomPermission
+                Mom: Well, that all sounds good to me. A summer job will be a nice way to keep busy. Now then, let’s leave this nice family to their dinner.
+                + [Say Goodbye] -> Goodbye
+            = Goodbye
+                Dana: Ok. Bye bye Kimmy, and Mrs...?
+                Kimmy's Mom: Mrs. Munro. Again, thank you for giving Kimmy a hand. It was nice meeting you, Mrs. Navarro.
+                Mom: Likewise.
+                Kimmy: Bye bye.
+                + [Head back Home] -> HeadOut
+            = HeadOut
+                You head back home. You have trouble sleeping because you are so excited to hang out with Kimmy Tomorrow. 
+                Next morning, bright and early, you meet Kimmy outside her house!
+                + [Talk to Kimmy] -> KimmyTalk
+            = KimmyTalk
+                Dana: Mornin’ Kimmy! I’m here to babysit, like I promised! Is your mom around?
+                Kimmy: My mommy’s not inside. She left already.
+                + [Ask Kimmy what to do] -> AskKimmy
+            = AskKimmy
+                Dana: Oh, ok… Um, well… Is there anything you’d like to do today, Kimmy?
+                Kimmy: No… I don’t know.
+                Dana: That’s ok, do you have a friend you’d like to visit?
+                Kimmy: No...
+                Dana: Should we watch TV or something in your house?
+                Kimmy: We don’t have a TV. My dad is in there too, so we should go play somewhere else. He’s busy.
+                + [Come up with a brand new idea!] -> NewIdea
+            = NewIdea
+                Dana: Ok then! Want to walk around and play some games with the other kids?
+                Kimmy: Other kids…?
+                Dana: You know, the neighborhood kids. Like Donna. Isn’t she your age? You’re both going to be in Kindergarten, right?
+                Kimmy: Oh, yeah… I don’t think Donna is my friend though, so she probably wouldn’t want to play...
+                + [Make Kimmy Feel Better] -> KimmyFeelBetter
+            = KimmyFeelBetter
+                Dana: Well, let’s go become her friend! There's lots of other kids around, too. Like Anthony. I know him from school.
+                Dana: Come on, let’s go!
+                Kimmy: ...!
+                + [Head out to Town] -> Town
+        = Town
+                It's time for a day of adventure with Kimmy. What to do next?
+                -> Map_Selection
