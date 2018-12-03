@@ -2,7 +2,11 @@
 using System.Collections;
 using Ink.Runtime;
 
-public class Conversation : MonoBehaviour {
+public class Conversation : MonoBehaviour
+{
+	[SerializeField]
+	private AudioSource beep;
+	
 	[SerializeField]
 	private TextAsset inkAsset;
 	private Story _inkStory;
@@ -69,6 +73,7 @@ public class Conversation : MonoBehaviour {
 	}
 
 	public void ChoiceSelected (int id) {
+		beep.Play();
 		_inkStory.ChooseChoiceIndex (id);
 		storyNeeded = true;
 	}

@@ -208,7 +208,7 @@ Prefab:
     - target: {fileID: 224156919709125928, guid: c18817c339ef26c4195866f08e93d7c5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 24.6
+      value: 90.2
       objectReference: {fileID: 0}
     - target: {fileID: 224156919709125928, guid: c18817c339ef26c4195866f08e93d7c5,
         type: 2}
@@ -218,7 +218,7 @@ Prefab:
     - target: {fileID: 224156919709125928, guid: c18817c339ef26c4195866f08e93d7c5,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 311.9
+      value: 239
       objectReference: {fileID: 0}
     - target: {fileID: 224156919709125928, guid: c18817c339ef26c4195866f08e93d7c5,
         type: 2}
@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 1628797819}
   - component: {fileID: 1628797820}
   - component: {fileID: 1628797822}
+  - component: {fileID: 1628797823}
   m_Layer: 0
   m_Name: Reader
   m_TagString: Untagged
@@ -552,9 +553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8b7b20f2dac9a448e77e15f37b643c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beep: {fileID: 1628797823}
   inkAsset: {fileID: 4900000, guid: 6eb770e9494dab843abde14d2911b087, type: 3}
   canvas: {fileID: 918107545}
-  elementPadding: 0
+  elementPadding: 15
   text: {fileID: 114460363610425556, guid: c18817c339ef26c4195866f08e93d7c5, type: 2}
   button: {fileID: 114647801260249482, guid: 7429133e96b262f4ab3448b27930735d, type: 2}
 --- !u!4 &1628797821
@@ -584,6 +586,101 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1628797823
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1628797818}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 51b617fd56ada1b4b85a641cfe0e80b9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -790,12 +887,12 @@ Prefab:
     - target: {fileID: 224505174272992830, guid: 7429133e96b262f4ab3448b27930735d,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -31
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 224505174272992830, guid: 7429133e96b262f4ab3448b27930735d,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -215
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 224505174272992830, guid: 7429133e96b262f4ab3448b27930735d,
         type: 2}
