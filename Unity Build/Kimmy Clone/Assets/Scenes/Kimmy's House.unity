@@ -827,6 +827,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114714128520316444, guid: 4293c490aa792e948a671b98eaf303b9,
+        type: 2}
+      propertyPath: m_lineSpacing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4293c490aa792e948a671b98eaf303b9, type: 2}
   m_IsPrefabAsset: 0
@@ -1823,16 +1828,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114409808579109420, guid: bb8de98676bd32044876523f78147c79,
-        type: 2}
-      propertyPath: m_fontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 114409808579109420, guid: bb8de98676bd32044876523f78147c79,
-        type: 2}
-      propertyPath: m_fontSizeBase
-      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8de98676bd32044876523f78147c79, type: 2}

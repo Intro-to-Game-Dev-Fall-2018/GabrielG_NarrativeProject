@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Ink.Runtime;
 using TMPro;
@@ -35,7 +36,6 @@ public class Conversation : MonoBehaviour
 	[SerializeField]
 	private TextAsset inkAsset;
 	private Story _inkStory;
-	private bool storyNeeded;
 
 	[SerializeField]
 	private Canvas canvas;
@@ -60,18 +60,19 @@ public class Conversation : MonoBehaviour
 	[SerializeField]
 	private SpriteRenderer Linda_sprite;
 
+	private Boolean needChoices;
+	
 	void Awake () {
 		_inkStory = new Story (inkAsset.text);
-		storyNeeded = true;
+		RemoveChildren();
+		GetText(0);
 	}
 
-	// Update is called once per frame
-	void Update () {
+	/* void Update () {
 		
-		if (storyNeeded) {
+		if (storyNeeded ) {
 			RemoveChildren ();
-
-			
+		
 			float offset = 0;
 			
 			
@@ -107,18 +108,74 @@ public class Conversation : MonoBehaviour
 			storyNeeded = false;
 		}
 	}
+	*/
+	
+	// Update is called once per frame
+	void Update ()
+	{
+
+			if (!Input.anyKeyDown) return;
+			
+			float offset = 0;
+			
+			if (_inkStory.canContinue) {
+				RemoveChildren ();
+				GetText(offset);
+			}
+	
+			CheckVariables();
+			EncounterDesign();
+		
+			if(_inkStory.currentChoices.Count > 0 && needChoices) {
+				for (int ii = 0; ii < _inkStory.currentChoices.Count; ++ii) {
+					UnityEngine.UI.Button choice = Instantiate (button);
+					choice.transform.SetParent (canvas.transform, false);
+					choice.transform.Translate (new Vector2 (0, offset));
+
+					TextMeshProUGUI choiceText = choice.GetComponentInChildren<TextMeshProUGUI> ();
+					choiceText.text = _inkStory.currentChoices [ii].text;
+
+					UnityEngine.UI.HorizontalLayoutGroup layoutGroup = choice.GetComponent <UnityEngine.UI.HorizontalLayoutGroup> ();
+
+					int choiceId = ii;
+					choice.onClick.AddListener(delegate{ChoiceSelected(choiceId);});
+
+					offset -= (choiceText.fontSize + layoutGroup.padding.top + layoutGroup.padding.bottom + elementPadding);
+					
+				}
+				needChoices = false;
+			}
+			
+
+			// storyNeeded = false;
+		
+	}
 
 	void RemoveChildren () {
 		int childCount = canvas.transform.childCount;
 		for (int i = childCount - 1; i >= 0; --i) {
 			GameObject.Destroy (canvas.transform.GetChild (i).gameObject);
 		}
+		 needChoices = true;
 	}
 
-	public void ChoiceSelected (int id) {
+	public void ChoiceSelected (int id)
+	{
+		Debug.Log("Choice selected");
 		beep.Play();
 		_inkStory.ChooseChoiceIndex (id);
-		storyNeeded = true;
+		RemoveChildren();
+		GetText(0);
+	}
+	
+	void GetText (float f) {
+		TextMeshProUGUI storyText = Instantiate (text);
+		storyText.text = _inkStory.Continue ();
+		storyText.transform.SetParent (canvas.transform, false);
+		storyText.transform.Translate (new Vector2 (0, f));
+		f -= (storyText.fontSize + elementPadding);
+		CheckVariables();
+		EncounterDesign();
 	}
 
 	// This code will be called as the story is progressing in order to assign variables their proper values so that the right sprites are being utilized
@@ -183,6 +240,13 @@ public class Conversation : MonoBehaviour
 		{
 			UnityEngine.UI.Text nameTextText = Instantiate (nameText);
 			nameTextText.text = "Linda";
+			nameTextText.transform.SetParent (canvas.transform, false);
+			nameTextText.transform.Translate (new Vector2 (0, offset));
+		}
+		else if (speaking == 5)
+		{
+			UnityEngine.UI.Text nameTextText = Instantiate (nameText);
+			nameTextText.text = "The Town";
 			nameTextText.transform.SetParent (canvas.transform, false);
 			nameTextText.transform.Translate (new Vector2 (0, offset));
 		}
