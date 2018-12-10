@@ -49,6 +49,10 @@ encounter refers to what music / shaders to use
 4: Linda
 5: Game
 6: GameOver
+
+encounterchange indicates whether or not an encounter is changing
+0: Yes changing
+1: No, not changing
 */
 
 VAR dana = 0
@@ -60,21 +64,21 @@ VAR speak = 0
 VAR encounter = 0
 VAR encounterchange = 0
 
-// IntroScenario
         ~ dana = 2
         ~ kimmy = 2
         ~ encounter = 0
         ~ encounterchange = 0
-        You have found a young child while wandering about town. Her name is Kimmy! We should hang out together!
-        //+ [Go Home]
-        //-> Arriving_Home
-        + [Let's go have fun at the playground!]
+        You have found a friend in town. 
+        
+        Her name is Dana! 
+        
+        She wants to hang out with you!
+        + [Let's go to the playground!]
         -> Playground
         
     
-= Playground 
-The playground is always exciting! I don't hang out here as much as I used to though, now that I'm grown up. 
-    
+=== Playground ===
+The playground is always exciting! 
     ~ dana = 1
     ~ kimmy = 1
     ~ blythe = 0
@@ -83,7 +87,6 @@ The playground is always exciting! I don't hang out here as much as I used to th
     ~ speak = 5
     ~ encounter = 1
     ~ encounterchange = 0
-    
     + {not BlytheGame} [Talk to Blythe] -> Blythe
     + {not BlytheFriend}{BlytheGame} [Talk to Blythe again] -> BlytheFriend
     
@@ -97,7 +100,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
 
     
     // Blythe's Dialogue
-        = Blythe
+        === Blythe ===
                     ~ dana = 1
                     ~ kimmy = 3
                     ~ blythe = 1
@@ -117,7 +120,10 @@ The playground is always exciting! I don't hang out here as much as I used to th
                             ~ encounterchange = 1
                             I’m a babysitter so you can’t bug me anymore, got it? 
                             ~ dana = 4
-                    // Blythe: 
+                            + [...] -> BlytheMad
+                    
+                = BlytheMad
+                        // Blythe: 
                             Poor Dana. Poor Kimmy. 
                             ~ dana = 3
                             ~ blythe = 2
@@ -148,7 +154,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
                             ~ speak = 2
                     + [And so we played a game] -> BlytheGame
             
-        = BlytheFriend
+        === BlytheFriend ===
                     ~ dana = 1
                     ~ kimmy = 1
                     ~ blythe = 2
@@ -194,8 +200,11 @@ The playground is always exciting! I don't hang out here as much as I used to th
                             ~ dana = 4
                             ~ speak = 0
                             You’re mean to girls. I’ve seen you chasing girls around the neighborhood
-                            It’s bad and you’re going to get in trouble with the adults.
+                            It’s bad and you’re going to get in trouble with the adults
                             ~ blythe = 1
+                            + [ Is Blythe frowning? ] -> BlytheFrown
+                
+                = BlytheFrown
                     // Blythe: 
                             Quiet Kimmy alone and tied up on the porch.. 
                             ~ blythe = 2
@@ -241,14 +250,15 @@ The playground is always exciting! I don't hang out here as much as I used to th
                             ~ blythe = 1
                             We might play games with you, but not just so you’ll be nice. 
                             Maybe we can teach you some manners.
-                    // Blythe: 
+                        + [ Yeah, she needs manners! ] -> BlytheManners
+                = BlytheManners
                             I’m gonna win, win, win!
                             ~ blythe = 2
                             ~ speak = 2
                     + [ Let's head back to the Playground ] -> Playground
             
             
-        = BlytheGame
+        === BlytheGame ===
                      ~ encounter = 5
                      ~ dana = 1
                      ~ kimmy = 2
@@ -272,6 +282,9 @@ The playground is always exciting! I don't hang out here as much as I used to th
                             ~ dana = 1
                             ~ blythe = 1
                             You always brag about how good you are at games, and how you know so many.
+                            
+                    + [ It'd be really cool to know a lot of games] -> KnowGames
+                = KnowGames
                     // Kimmy: 
                             I wanna know more games than Blythe!
                             ~ kimmy = 2
@@ -279,11 +292,11 @@ The playground is always exciting! I don't hang out here as much as I used to th
                     + [ Support Kimmy ] -> SupportKimmy1
                     
                 = SupportKimmy1
-                    Dana: 
+                    // Dana: 
                             Haha, that’s the spirit!
                             ~ dana = 2
                             ~ speak = 0
-                    Blythe: 
+                    // Blythe: 
                             Pfft. Good luck. 
                             ~ blythe = 3
                             ~ speak = 2
@@ -294,7 +307,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
             
     
     // Janey's Dialogue
-        = Janey
+        === Janey ===
                 ~ encounter = 3
                  ~ encounterchange = 0
                 ~ dana = 1
@@ -382,6 +395,9 @@ The playground is always exciting! I don't hang out here as much as I used to th
                         ~ janey = 2
                         ~ dana = 1
                         I love popcorn. I can have free soda whenever I want, too.
+                        
+                        + [ Dana got excited! ] -> DanaExcited
+            = DanaExcited
                 // Dana: 
                         I also have a summer job!
                         ~ speak = 0
@@ -389,6 +405,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                         I’m babysitting Kimmy! 
                         ~ dana = 2
                         I wasn’t planning on working, but I think it’s great.
+                    + [I wish I had a job...] -> WishJob
+            = WishJob
                 // Janey: 
                         My mom said a summer job is important.
                         ~ speak = 3
@@ -432,7 +450,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
 
 
 
-        = JaneyFriend
+        === JaneyFriend ===
                 ~ encounter = 5
                 ~ dana = 1
                 ~ kimmy = 1
@@ -621,7 +639,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
                 + [ Let's head back to the Playground ] -> Playground
             
             
-        = JaneyGame
+        === JaneyGame ===
                 ~ encounter = 5
                 ~ dana = 2
                 ~ kimmy = 2
@@ -702,7 +720,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
         
         
     // Linda's Dialogue
-        = Linda
+        === Linda ===
                 ~ encounter = 4
                 ~ dana = 1
                 ~ kimmy = 2
@@ -742,6 +760,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                         ~ speak = 0
                         Sometimes my sisters and I go. 
                         We like to go explore all the clothes shops. Like Filene's.
+                + [ Then Linda said...] -> LindaSaidd
+            = LindaSaidd
                 // Linda: 
                         I don’t really go shopping, unless it’s for stuffed animals.
                         ~ speak = 4
@@ -751,11 +771,15 @@ The playground is always exciting! I don't hang out here as much as I used to th
                 // Linda: 
                         Oh, having a job is good. 
                         ~ speak = 4
+                        + [ Linda will speak her truth ] -> LindaTruth
+                = LindaTruth
                         When I’m a little older I want to get one at an animal shelter or something. 
                         I like playing with dogs.
                 // Kimmy: 
                         I love dogs.
                         ~ speak = 1
+                        + [Lets play some games!] -> GameLinda
+                = GameLinda
                 // Dana:
                         We’re looking for people to play games with. 
                         ~ speak = 0
@@ -769,7 +793,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
         
         
         
-        = LindaGame
+        === LindaGame ===
                 ~ encounter = 5
                 ~ dana = 1
                 ~ kimmy = 2
@@ -824,7 +848,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
 
 
 
-        = LindaFriend
+        === LindaFriend ===
                 ~ encounter = 4
                 ~ dana = 1
                 ~ kimmy = 2
@@ -874,7 +898,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                     I think I’d get a little nervous around the bigger animals. 
                     ~ speak = 0
                     I’d want to work with the small ones--like penguins.
-                // Linda: 
+                + [ Linda seems excited! ] -> LindaExcited
+            = LindaExcited
                     She loves it. 
                     ~ speak = 4
                     But she’s stressed a lot too. 
@@ -886,6 +911,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                     Your auntie sounds amazing… 
                     ~ speak = 1
                     I don’t even know what I want to do when I grow up.
+                    + [ Linda is so confident ] -> LindaConfident
+            = LindaConfident
                 // Linda: 
                     My auntie told me not to pick my career until I’m older, because I might find something else I like to do in high school. 
                     ~ speak = 4
@@ -897,6 +924,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                     My dad is an engineer, so sometimes I think that would be an interesting job, but I like a lot of other things too. 
                     ~ speak = 0
                     I love fashion.
+                    + [ I like candy...] -> KimmyCandy
+            = KimmyCandy
                 // Kimmy: 
                     I like… candy. 
                     ~ speak = 1
@@ -927,6 +956,8 @@ The playground is always exciting! I don't hang out here as much as I used to th
                     Dogs are just as afraid of you. 
                     ~ speak = 4
                     If you’re nice to them, you have nothing to worry about.
+                    + [Dana seems worried] -> DanaWorried
+                = DanaWorried
                 // Dana: 
                     What if one is chasing me?
                     ~ speak = 0
@@ -946,7 +977,7 @@ The playground is always exciting! I don't hang out here as much as I used to th
                 + [Let's head back to the Playground] 
                 -> Playground
                 
-    = EndofDay
+    === EndofDay ===
         ~ encounter = 6
          ~ encounterchange = 1
         We made friends with everyone! Hurray! -> DONE

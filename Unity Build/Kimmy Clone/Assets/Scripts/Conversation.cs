@@ -68,10 +68,13 @@ public class Conversation : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 		
-		if (storyNeeded == true) {
+		if (storyNeeded) {
 			RemoveChildren ();
 
+			
 			float offset = 0;
+			
+			
 			while (_inkStory.canContinue) {
 				TextMeshProUGUI storyText = Instantiate (text);
 				storyText.text = _inkStory.Continue ();
@@ -84,11 +87,11 @@ public class Conversation : MonoBehaviour
 			EncounterDesign();
 			if(_inkStory.currentChoices.Count > 0) {
 				for (int ii = 0; ii < _inkStory.currentChoices.Count; ++ii) {
-					UnityEngine.UI.Button choice = Instantiate (button) as UnityEngine.UI.Button;
+					UnityEngine.UI.Button choice = Instantiate (button);
 					choice.transform.SetParent (canvas.transform, false);
 					choice.transform.Translate (new Vector2 (0, offset));
 
-					UnityEngine.UI.Text choiceText = choice.GetComponentInChildren<UnityEngine.UI.Text> ();
+					TextMeshProUGUI choiceText = choice.GetComponentInChildren<TextMeshProUGUI> ();
 					choiceText.text = _inkStory.currentChoices [ii].text;
 
 					UnityEngine.UI.HorizontalLayoutGroup layoutGroup = choice.GetComponent <UnityEngine.UI.HorizontalLayoutGroup> ();
