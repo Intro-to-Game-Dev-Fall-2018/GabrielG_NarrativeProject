@@ -64,30 +64,37 @@ VAR speak = 0
 VAR encounter = 0
 VAR encounterchange = 0
 
-        ~ dana = 2
-        ~ kimmy = 2
+        ~ dana = 0
+        ~ kimmy = 3
         ~ speak = 1
         ~ encounter = 0
         ~ encounterchange = 0
         You have found a friend in town. 
-        
+        ~ kimmy = 1
+        ~ encounterchange = 1
         Her name is Dana! 
-        
+        ~ dana = 1
         She wants to hang out with you!
+        ~ kimmy = 2
+        ~ dana = 2
         + [Let's go to the playground!]
+
         -> Playground
         
     
 === Playground ===
-The playground is always exciting! 
+    ~ encounter = 1
+    ~ encounterchange = 0
     ~ dana = 1
     ~ kimmy = 1
     ~ blythe = 0
     ~ linda = 0
     ~ janey = 0
     ~ speak = 5
-    ~ encounter = 1
-    ~ encounterchange = 0
+The playground is always exciting! 
+    ~ encounterchange = 1
+Who should we talk to?
+
     + {not BlytheGame} [Talk to Blythe] -> Blythe
     + {not BlytheFriend}{BlytheGame} [Talk to Blythe again] -> BlytheFriend
     
@@ -98,7 +105,6 @@ The playground is always exciting!
     + {not LindaFriend}{LindaGame}[Talk to Linda again] -> LindaFriend
     
     + {LindaFriend}{JaneyFriend}{BlytheFriend} [Guess we made friends with everyone] -> EndofDay
-
     
     // Blythe's Dialogue
         === Blythe ===
@@ -111,39 +117,42 @@ The playground is always exciting!
                     
                     // Kimmy: 
                             P-please go away... 
-                    // Dana: 
-                            Blythe, knock it off! 
-                            ~ dana = 3
-                            ~ speak = 0
                             ~ encounterchange = 1
+                            ~ speak = 0
+                    // Dana: 
+                            ~ dana = 3
+                            ~ speak = 0
+                            Blythe, knock it off! 
+                            ~ dana = 4
                             I’m a babysitter so you can’t bug me anymore, got it? 
-                            ~ dana = 4
-                        // Blythe: 
+                    
+                    // Blythe: 
+                            ~ speak = 2
+                            ~ dana = 3
+                            ~ blythe = 2
                             Poor Dana. Poor Kimmy. 
-                            ~ dana = 3
-                            ~ blythe = 2
-                            ~ speak = 2
-                            You can’t get away from me! 
                             ~ blythe = 3
-                            I’m the bicycle lord.
+                            You can’t get away from me! 
                             ~ blythe = 2
-                            I’ll only stop following you if you play a game with me. 
+                            I’m the bicycle lord.
                             ~ blythe = 1
+                            I’ll only stop following you if you play a game with me. 
                     // Dana: 
-                            No.
                             ~ dana = 4
                             ~ speak = 0
+                            No.
                     // Blythe: 
-                            Yes.
                             ~ speak = 2
+                            ~ blythe = 2
+                            Yes.
                     // Dana: 
-                            Fine.
                             ~ dana = 3
                             ~ speak = 0
+                            Fine.
                     // Blythe: 
-                            That’s right.
                             ~ blythe = 2
                             ~ speak = 2
+                            That’s right.
                     + [And so we played a game] -> BlytheGame
             
         === BlytheFriend ===
@@ -151,251 +160,262 @@ The playground is always exciting!
                     ~ kimmy = 1
                     ~ blythe = 2
                     ~ encounter = 2
-                     ~ encounterchange = 0
+                    ~ encounterchange = 0
                     
                     // Kimmy: 
-                            I didn’t know bullies liked games.
                             ~ speak = 1
+                            I didn’t know bullies liked games.
+                            ~ encounterchange = 1
                     // Blythe: 
-                            Shut up, Kimmy.
                             ~ speak = 2 
                             ~ blythe = 3
                             ~ dana = 3
                             ~ kimmy = 3
-                            I’m not thaaaat evil.
+                            Shut up, Kimmy.
                             ~ blythe = 1
+                            I’m not thaaaat evil.
                             I found a newt this morning and slipped it into Janey’s purse... 
                             but I could have dropped it down her dress… 
-                            ...but I’m nice, I wouldn’t do that.
                             ~ blythe = 2
+                            ...but I’m nice, I wouldn’t do that.
+                     
                     // Dana: 
-                            That’s… neither of those options are nice, Blythe.
                             ~ speak = 0
                             ~ blythe = 1
-                            ~ encounterchange = 1
+                            That’s… neither of those options are nice, Blythe.
                     // Blythe: 
-                            I just like to mess with girls.  
+                          
                             ~ speak = 2
                             ~ blythe = 2
-                            But I take games seriously.
+                            I just like to mess with girls. 
                             ~ blythe = 1
-                            So you better play with me some more, you little brat.
+                            But I take games seriously.
                             ~ blythe = 3
+                            So you better play with me some more, you little brat.
                     // Dana: 
-                            Don’t talk that way to Kimmy!
                             ~ dana = 4
                             ~ speak = 0
+                            Don’t talk that way to Kimmy!
                             You’re mean to girls. I’ve seen you chasing girls around the neighborhood
+                               ~ blythe = 1
                             It’s bad and you’re going to get in trouble with the adults
-                            ~ blythe = 1
                     // Blythe: 
-                            Quiet Kimmy alone and tied up on the porch.. 
-                            ~ blythe = 2
+                             ~ blythe = 2
                             ~ speak = 2
-                            How much did you pay Dana to be your friend anyways?
+                            Quiet Kimmy alone and tied up on the porch.. 
                             ~ dana = 3
+                            How much did you pay Dana to be your friend anyways?
                     // Kimmy: 
-                            I don’t have any friends.
                             ~ kimmy = 4
                             ~ speak = 1
+                            I don’t have any friends.
                     // Dana: 
-                            I’m her friend and babysitter, but it’s none of your business anyways.
                             ~ dana = 2
                             ~ kimmy = 3
                             ~ speak = 0
                             ~ blythe = 1
+                            I’m her friend and babysitter, but it’s none of your business anyways.
                     // Kimmy: 
+                            ~ speak = 1
                             ...
                     // Dana: 
-                            Don’t be mean to Kimmy, or I’ll really get mad. 
+                            ~ speak = 0
                             ~ dana = 3
-                            I’ll… tell your mom that you were being rude!
+                            Don’t be mean to Kimmy, or I’ll really get mad. 
                             ~ dana = 4
+                            I’ll… tell your mom that you were being rude!
+                            
                     // Blythe: 
-                            Haha, yeah right.
                             ~ dana = 3
                             ~ blythe = 2
                             ~ speak = 2
+                            Haha, yeah right.
                             I’ll be nice but only if you and Kimmy play more games with me.
                     // Dana: 
-                            Uh, no. 
                             ~ dana = 4
                             ~ speak = 0
                             ~ blythe = 1
+                            Uh, no. 
                             We might play games with you, but not just so you’ll be nice. 
                             Maybe we can teach you some manners.
-                            I’m gonna win, win, win!
                             ~ blythe = 2
                             ~ speak = 2
-                    + [ Let's head back to the Playground ] -> Playground
+                            I’m gonna win, win, win!
+                    + [ To the Playground ] -> Playground
             
             
         === BlytheGame ===
                      ~ encounter = 5
                      ~ dana = 1
                      ~ kimmy = 2
-                     ~ blythe = 1
-                      ~ encounterchange = 0
+                     ~ blythe = 2
+                     ~ encounterchange = 0
                     ~ speak = 2
                     
                     // Blythe: 
                             I love that game. Haha, what a rush.
-                            ~ blythe = 2
+                            ~ encounterchange = 1
                     // Dana: 
-                            Well… that was nice. 
+                           
                             ~ dana = 2
                             ~ speak = 0
-                            ~ encounterchange = 1
-                            I’m surprised you hadn’t played before though, Blythe.
+                            Well… that was nice. 
+                           
                             ~ dana = 1
                             ~ blythe = 1
+                            I’m surprised you hadn’t played before though, Blythe.
                             You always brag about how good you are at games, and how you know so many.
                     // Kimmy: 
-                            I wanna know more games than Blythe!
+                            
                             ~ kimmy = 2
                             ~ speak = 1
+                            I wanna know more games than Blythe!
                     // Dana: 
-                            Haha, that’s the spirit!
+                            
                             ~ dana = 2
                             ~ speak = 0
+                            Haha, that’s the spirit!
                     // Blythe: 
-                            Pfft. Good luck. 
                             ~ blythe = 3
                             ~ speak = 2
-                            I’m gonna go catch bugs later. That’s better than games.
+                            Pfft. Good luck. 
                             ~ blythe = 1
-                    + [ Let's head back to the Playground ] -> Playground
+                            I’m gonna go catch bugs later. That’s better than games.
+                            
+                    + [ To the Playground ] -> Playground
             
             
     
     // Janey's Dialogue
         === Janey ===
                 ~ encounter = 3
-                 ~ encounterchange = 0
-                ~ dana = 1
+                ~ encounterchange = 0
                 ~ kimmy = 1
                 ~ janey = 1
-                ~ speak = 0
                 
                 // Dana: 
-                        Hey Janey, how are you? 
                         ~ speak = 0
-                        ~ dana = 2
+                        ~ dana = 1
+                        Hey Janey, how are you? 
+                        ~ encounterchange = 1
                 // Janey: 
-                        You know the Grenada movie theatre? 
                         ~ speak = 3
                         ~ dana = 1
                         ~ kimmy = 3
-                        I got a summer job there. 
+                        You know the Grenada movie theatre? 
                         ~ janey = 2
-                        I started last week.
+                        I got a summer job there. 
                         ~ janey = 1
+                        I started last week.
                 // Kimmy: 
-                        Wow… my mom took me there once...
                         ~ speak = 1
                         ~ kimmy = 1
-                        ~ encounterchange = 1
+                        Wow… my mom took me there once...
                 // Janey: 
-                        What did you see? I go to the movies a lot, so I bet I saw it too.
                         ~ speak = 3
                         ~ janey = 2
+                        What did you see? 
+                        I go to the movies a lot, so I bet I saw it too.
                 // Kimmy: 
                         Oh… we saw the movie with the… 
                         ~ speak = 1
                         ~ kimmy = 3
                         ~ janey = 1
+                        Oh… we saw the movie with the… 
                         Uh... the fairy godmother and the shoe…
                 // Janey: 
-                        Cinderella?
                         ~ speak = 3
                         ~ janey = 2
                         ~ kimmy = 1
+                        Cinderella?
                 // Kimmy: 
-                        Yeah... and we saw Mary Poppins.
                         ~ kimmy = 2
                         ~ speak = 1
                         ~ dana = 2
                         ~ janey = 1
+                        Yeah... and we saw Mary Poppins.
                 // Janey: 
-                        I saw that at The Grenada too. 
                         ~ speak = 3
                         ~ janey = 2
                         ~ dana = 1
                         ~ kimmy = 1
+                        I saw that at The Grenada too. 
                         It was so great.
                 // Dana: 
-                        If we go see a movie there, where would we find you?
                         ~ speak = 0
                         ~ janey = 1
                         ~ dana = 2
+                        If we go see a movie there, where would we find you?
                 // Janey: 
-                        I’m at the snack counter, but I’m too little to be a cashier. 
                         ~ speak = 3
                         ~ dana = 1
-                        I’m helping make popcorn… just until I’m old enough to do something more serious.
+                        I’m at the snack counter, but I’m too little to be a cashier.
                         ~ janey = 3
+                        I’m helping make popcorn… just until I’m old enough to do something more serious.
                 // Kimmy: 
-                        I love popcorn!
                         ~ speak = 1
                         ~ kimmy = 2
                         ~ janey = 1
                         ~ dana = 2
+                        I love popcorn!
                 // Janey: 
-                        Yeah, it’s pretty awesome to be at the snack counter. 
                         ~ speak = 3
-                        ~ janey = 2
+                        ~ janey = 1
                         ~ dana = 1
+                        ~ kimmy = 1
+                        Yeah, it’s pretty awesome to be at the snack counter. 
+                        ~ janey = 2
                         I love popcorn. I can have free soda whenever I want, too.
-                // Dana: 
-                        I also have a summer job!
+                // Dana:
                         ~ speak = 0
                         ~ janey = 1
-                        I’m babysitting Kimmy! 
+                        I also have a summer job!
                         ~ dana = 2
+                        I’m babysitting Kimmy! 
                         I wasn’t planning on working, but I think it’s great.
                 // Janey: 
-                        My mom said a summer job is important.
                         ~ speak = 3
                         ~ dana = 1
+                        My mom said a summer job is important.
+                         ~ janey = 2
                         I didn’t want her to think I was lazy, and I love movies!
-                        ~ janey = 2
+                         ~ janey = 1
                         So I got my cousin to help me get the job. He sells tickets there.
-                        ~ janey = 1
                 // Dana: 
-                        I’m glad I won’t be lazy this summer. 
                         ~ speak = 0
                         ~ dana = 2
+                        I’m glad I won’t be lazy this summer.
+                         ~ dana = 1
                         I think I’m getting too old to be lazy. I mean, I’m going into the 5th grade.
-                        ~ dana = 1
                 // Janey: 
-                        Yeah, it’s more fun to be out with people who aren’t just teachers and classmates too.
                         ~ speak = 3
+                        Yeah, it’s more fun to be out with people who aren’t just teachers and classmates too.
+                         ~ janey = 2
                         By the way, I’m not working today. Wanna play together?
-                        ~ janey = 2
                 + [Play Game with Janey] -> JaneyGame
                 + [I don't want to play] -> NoGame
         
             = NoGame
                 // Janey: 
-                        Oh, alright. I guess I'll see you around.
                         ~ speak = 3
                         ~ janey = 3
+                        Oh, alright. I guess I'll see you around.
                 // Dana: 
-                        Bye!
                         ~ speak = 0
                         ~ dana = 1
                         ~ kimmy = 1
+                         Bye!
                 // Kimmy: 
-                        Bye!
                         ~ speak = 1
+                        Bye!
                     
-                + [ Let's head back to the Playground ] -> Playground
+                + [ To the Playground ] -> Playground
 
 
 
         === JaneyFriend ===
                 ~ encounter = 5
-                ~ dana = 1
+                ~ dana = 2
                 ~ speak = 0
                 ~ kimmy = 1
                 ~ janey = 1
@@ -403,159 +423,159 @@ The playground is always exciting!
                  
                 // Dana: 
                         Say… do you think you’ll ever try joining the school theatre, Janey? 
-                        ~ speak = 0
-                        ~ dana = 2
-                        I was thinking of auditioning for a play next year…
+                        ~ encounterchange = 1
                         ~ dana = 3
+                        I was thinking of auditioning for a play next year…
                 // Janey: 
-                        I could, but my mom’s YWCA theatre group is… better.
                         ~ speak = 3
                         ~ dana = 1
+                        I could, but my mom’s YWCA theatre group is… better.
                 // Kimmy: 
-                        I like seeing the plays at school. 
                         ~ speak = 1
                         ~ kimmy = 2
                         ~ dana = 2
+                        I like seeing the plays at school. 
                         Can we be in one together, Dana?
                 // Dana: 
-                        I know, I wish we were in school together. 
                         ~ speak = 0
                         ~ dana = 2
-                        ~ encounterchange = 1
-                        But I’m at Cheverus, not Lincoln Elementary. 
+                        I know, I wish we were in school together. 
                         ~ dana = 1
                         ~ kimmy = 3
-                        I can’t be in a play at a school I don’t go to.
+                        But I’m at Cheverus, not Lincoln Elementary. 
                         ~ dana = 3
+                        I can’t be in a play at a school I don’t go to.
                 // Kimmy: 
-                        Oh… are you at Cheverus too, Janey?
                         ~ speak = 1
                         ~ kimmy = 1
                         ~ dana = 1
+                        Oh… are you at Cheverus too, Janey?
                 // Janey: 
-                        Yes, I am. Both my parents went to Catholic school too.
                         ~ janey = 2
                         ~ speak = 3
                         ~ kimmy = 3
+                        Yes, I am. Both my parents went to Catholic school too.
                 // Kimmy: 
-                        I go to Lincoln Elementary School.
                         ~ speak = 1
                         ~ kimmy = 1
                         ~ janey = 1
+                        I go to Lincoln Elementary School.
                 // Janey: 
-                        You should audition for your school’s play, Kimmy. 
                         ~ speak = 3
                         ~ janey = 2
                         ~ kimmy = 2
                         ~ dana = 2
-                        You’re cute so I bet you’d get a good part. 
+                        You should audition for your school’s play, Kimmy. 
                         ~ janey = 1
-                        Probably a love interest.
+                        You’re cute so I bet you’d get a good part. 
                         ~ kimmy = 1
                         ~ janey = 2
                         ~ dana = 3
+                        Probably a love interest.
                 // Kimmy: 
-                        ... A love interest?
                         ~ kimmy = 3
                         ~ janey = 1
                         ~ speak = 1
+                        ... A love interest?
                 // Janey: 
-                        Cute girls usually get cast as love interests. 
                         ~ speak = 3
                         ~ janey = 2
                         ~ kimmy = 1
                         ~ dana = 1
-                        You know, like a Juliet. Or a Tzeitel.
+                        Cute girls usually get cast as love interests. 
                         ~ janey = 1
+                        You know, like a Juliet. Or a Tzeitel.
                 // Kimmy: 
-                        I wouldn’t want a big part… or a… a love part...
                         ~ kimmy = 3
                         ~ speak = 1
+                        I wouldn’t want a big part… or a… a love part...
                 // Dana: 
-                        Me neither! 
                         ~ speak = 0
                         ~ kimmy = 1
                         ~ dana = 3
+                        Me neither! 
                         I think I’d get stage fright normally, but especially if I had to be romantic with some boy.
                 // Janey: 
-                        The romantic parts are the most fun--you might even get to do a stage kiss.
                         ~ janey = 2
                         ~ speak = 3
                         ~ dana = 1
+                        The romantic parts are the most fun
+                        You might even get to do a stage kiss.
                 // Kimmy: 
-                        Maybe theatre isn’t fun after all…
                         ~ kimmy = 3
                         ~ janey = 1
                         ~ speak = 1
                         ~ dana = 3
+                        Maybe theatre isn’t fun after all…
                 // Janey: 
-                        Kimmy, it is! 
                         ~ speak = 3
                         ~ janey = 2
                         ~ dana = 1
-                        I know you’re… a bit of a loner, so it’d probably be good for you to do theatre. 
+                        Kimmy, it is! 
                         ~ kimmy = 1
                         ~ janey = 3
-                        You’d learn how to be more social.
+                        I know you’re… a bit of a loner, so it’d probably be good for you to do theatre. 
                         ~ kimmy = 3
                         ~ janey = 2
+                        You’d learn how to be more social.
                 // Dana: 
-                        Kimmy’s not a loner! 
                         ~ speak = 0
                         ~ dana = 4
                         ~ janey = 3
-                        You're making lots of friends today, right Kimmy? 
+                        Kimmy’s not a loner! 
                         ~ kimmy = 1
                         ~ dana = 2
+                        You're making lots of friends today, right Kimmy? 
                         We’re going to play with everyone!
                 // Kimmy: 
-                        ...yes.
                         ~ kimmy = 3
                         ~ speak = 1
                         ~ dana = 1
+                        ...yes.
                 // Dana: 
-                        Also, it’s ok to want to be alone sometimes. 
                         ~ speak = 0
                         ~ dana = 2
                         ~ janey = 1
-                        But, everyone needs friends.
+                        Also, it’s ok to want to be alone sometimes. 
                         ~ kimmy = 1
                         ~ dana = 1
+                        But, everyone needs friends.
                 // Kimmy: 
-                        I don’t… know. Maybe.
                         ~ speak = 1
+                        I don’t… know. Maybe.
                 // Janey: 
-                        Hah! You want friends, Kimmy. All kids do.
                         ~ speak = 3
                         ~ janey = 2
+                        Hah! You want friends, Kimmy. All kids do.
                 // Kimmy:
-                        Not everyone is nice though...
                         ~ janey = 1
                         ~ speak = 1
+                        Not everyone is nice though...
                 // Janey: 
-                        I just think it’s sad to be a loner, so…
                         ~ speak = 3
                         ~ janey = 3
                         ~ dana = 3
+                        I just think it’s sad to be a loner, so…
                 // Kimmy: 
-                        ...
                         ~ speak = 5
                         ~ kimmy = 3
+                        ...
                 + [Someone... please talk..] -> AwkwardSilence
             
             = AwkwardSilence
                 // Janey: 
-                        …well if you ever want to do some theatre, just let me know.
                         ~ speak = 3
                         ~ dana = 1
-                        Or just get a job when you’re a bit older, I guess. 
+                        …well if you ever want to do some theatre, just let me know.
                         ~ kimmy = 1
                         ~ janey = 1
-                        You won’t be lonely if you’re working hard.
+                        Or just get a job when you’re a bit older, I guess. 
                         ~ janey = 2
+                        You won’t be lonely if you’re working hard.
                 // Kimmy: 
-                        Ok…
                         ~ speak = 1
+                        ~ kimmy = 3
+                        Ok…
                 + [ Let's head back to the Playground ] -> Playground
             
             
@@ -569,65 +589,64 @@ The playground is always exciting!
                  
                 // Dana: 
                         That’s it! Good job Janey, you picked that up fast!
-                        ~ speak = 0
-                // Janey: 
-                        My dad says I’m a fast learner. 
+                        ~ encounterchange = 1
+                // Janey:
                         ~ dana = 1
                         ~ kimmy = 1
                         ~ speak = 3
+                        My dad says I’m a fast learner. 
                         I can even beat Anthony at Tic Tac Toe sometimes.
                 // Kimmy: 
-                        I don’t think I’m a fast learner...
                         ~ kimmy = 3
                         ~ dana = 3
                         ~ janey = 3
                         ~ speak = 1
-                        ~ encounterchange = 1
+                        I don’t think I’m a fast learner...
                 // Dana: 
-                        I think you are! You’re great, Kimmy.
                         ~ dana = 2
                         ~ janey = 1
                         ~ kimmy = 1
                         ~ speak = 0
+                        I think you are! You’re great, Kimmy.
                 // Janey: 
-                        Don’t worry, you’re sharper than Jimmy at the very least…
                         ~ dana = 1 
                         ~ janey = 2
                         ~ speak = 3
+                        Don’t worry, you’re sharper than Jimmy at the very least…
                 // Kimmy: 
-                        Oh...
                         ~ speak = 1
                         ~ kimmy = 3
                         ~ dana = 3
                         ~ janey = 1
+                        Oh...
                 // Dana: 
-                        That’s not very nice, Janey.
                         ~ speak = 0
                         ~ janey = 3
                         ~ dana = 4
+                        That’s not very nice, Janey.
                 // Janey: 
-                        You’re so little, Kimmy, it’s ok. You have time. 
                         ~ speak = 3
                         ~ janey = 1
                         ~ dana = 3
                         ~ kimmy = 1
-                        Get a job like Dana and I and you’ll feel smarter in no time.
+                        You’re so little, Kimmy, it’s ok. You have time. 
                         ~ janey = 2
+                        Get a job like Dana and I and you’ll feel smarter in no time.
                 // Kimmy: 
-                        I want to be smart and big like you two…
                         ~ kimmy = 3
                         ~ janey = 1
                         ~ dana = 1
                         ~ speak = 1
+                        I want to be smart and big like you two…
                 // Dana: 
-                        Let’s make you some friends first. You can worry about jobs later.
                         ~ speak = 0
                         ~ dana = 2
+                        Let’s make you some friends first. You can worry about jobs later.
                 // Kimmy: 
-                        Ok...
                         ~ speak = 1
                         ~ kimmy = 2
                         ~ janey = 2
+                        Ok...
                 + [ Let's head back to the Playground ] -> Playground
         
         
@@ -639,58 +658,83 @@ The playground is always exciting!
                 ~ encounter = 4
                 ~ dana = 1
                 ~ kimmy = 2
-                ~ linda = 3
+                ~ linda = 1
                 ~ speak = 1
                  ~ encounterchange = 0
                  
                 // Kimmy: 
                         Hi Linda... I haven’t seen you in a while.
-                        ~ speak = 1
                         ~ encounterchange = 1
                 // Linda: 
+                        ~ speak = 4
+                        ~ linda = 3
                         I went to visit my auntie right when school ended.
-                        ~ speak = 4
                 // Dana: 
+                        ~ speak = 0
+                        ~ dana = 2
                         Hi, Linda. Do you know Kimmy?
-                        ~ speak = 0
                 // Linda: 
+                        ~ speak = 4
+                        ~ linda = 1
+                        ~ kimmy = 3
+                        ~ dana = 1
                         We’re neighbors.
-                        ~ speak = 4
                 // Kimmy: 
+                        ~ speak = 1
+                        ~ kimmy = 1
                         Did you go far away?
-                        ~ speak = 1
                 // Linda: 
-                        Auntie’s in Boston.
                         ~ speak = 4
+                        Auntie’s in Boston.
                 // Kimmy: 
-                        That sounds far...
                         ~ speak = 1
+                        ~ kimmy = 3
+                        That sounds far...
                 // Dana: 
-                        It’s not so far. You can even ride your bike there. 
                         ~ speak = 0
+                        It’s not so far. You can even ride your bike there. 
+                        ~ kimmy = 1
                         Sometimes my sisters and I go. 
+                        ~ dana = 2
                         We like to go explore all the clothes shops. Like Filene's.
                 // Linda: 
+                        ~ speak = 4
+                        ~ dana = 1
+                        ~ linda = 2
                         I don’t really go shopping, unless it’s for stuffed animals.
-                        ~ speak = 4
                 // Kimmy: 
-                        Dana is babysitting me, so she can go shopping with the quarters my mom gives her!
                         ~ speak = 1
+                        ~ kimmy = 2
+                        ~ linda = 1
+                        Dana is babysitting me, so she can go shopping with the quarters my mom gives her!
                 // Linda: 
-                        Oh, having a job is good. 
                         ~ speak = 4
+                        Oh, having a job is good. 
+                        ~ kimmy = 1
+                        ~ dana = 2
                         When I’m a little older I want to get one at an animal shelter or something. 
+                        ~ linda = 2
                         I like playing with dogs.
                 // Kimmy: 
-                        I love dogs.
                         ~ speak = 1
+                        ~ dana = 1
+                        ~ kimmy = 2
+                        ~ linda = 1
+                        I love dogs.
                 // Dana:
-                        We’re looking for people to play games with. 
                         ~ speak = 0
+                        ~ dana = 2
+                        ~ kimmy = 1
+                        We’re looking for people to play games with. 
+                        ~ kimmy = 2
+                        ~ dana = 1
                         Want to play a game with us, Linda?
                 // Linda: 
-                        I guess so. 
                         ~ speak = 4
+                        ~ kimmy = 1
+                        I guess so. 
+                        ~ dana = 2
+                        ~ kimmy = 2
                         I was playing with Donna earlier, but I could play some more.
                 + [ Play Game with Linda ] -> LindaGame
                 + [ Let's head back to the Playground ] -> Playground
@@ -701,142 +745,208 @@ The playground is always exciting!
                 ~ encounter = 5
                 ~ dana = 1
                 ~ kimmy = 2
-                ~ speak = 0
                 ~ linda = 3
                  ~ encounterchange = 0
                 
                 // Dana: 
                         We did it!
                         ~ speak = 0
-                // Linda: 
-                        I usually only play games with my dad or brothers, but that was fun.
-                        ~ speak = 4
-                // Kimmy: 
-                        Th--thanks for playing with us, Linda.
-                        ~ speak = 1
                         ~ encounterchange = 1
                 // Linda: 
-                        I’m going to visit my auntie again in a few weeks, so I’ll see if maybe she’ll want to learn this game!
                         ~ speak = 4
+                        ~ linda = 2
+                        ~ dana = 2
+                        I usually only play games with my dad or brothers, but that was fun.
+                // Kimmy: 
+                        ~ speak = 1
+                        ~ linda = 1
+                        ~ kimmy = 3
+                        Th--thanks for playing with us, Linda.
+                // Linda: 
+                        ~ speak = 4
+                        ~ linda = 2
+                        ~ dana = 1
+                        I’m going to visit my auntie again in a few weeks, so I’ll see if maybe she’ll want to learn this game!
+                        ~ linda = 3
+                        ~ kimmy = 1
                         ... thanks for teaching it to me.
                 // Dana: 
-                        Oh, thank you Linda. You’re a good student!
                         ~ speak = 0
+                        ~ linda = 1
+                        Oh, thank you Linda. You’re a good student!
                 // Linda: 
-                        I like to learn stuff. 
                         ~ speak = 4
+                        ~ linda = 2
+                        I like to learn stuff. 
+                        ~ linda = 1
                         I’m glad it’s summer break though… we never get assigned anything fun in school. 
+                        ~ linda = 2
                         But my auntie gave me some biology books to read and it’s really fun!
                 // Kimmy: 
-                        What’s… biology?
+                        ~ kimmy = 3
                         ~ speak = 1
+                        What’s… biology?
                 // Linda: 
-                        It’s about studying living stuff like plants and animals, and people sometimes too.
+                       ~ linda = 1
+                       ~ kimmy = 1
                         ~ speak = 4
+                         It’s about studying living stuff like plants and animals, and people sometimes too.
                 // Dana: 
-                        I hope I get to take biology soon. 
+                        ~ dana = 1
                         ~ speak = 0
+                        I hope I get to take biology soon. 
+                        ~ dana = 2
+                        ~ linda = 2
                         I like math and science classes a lot.
                 // Kimmy: 
-                        If I could study dogs, I think I’d be happy...
+                        ~ kimmy = 2
                         ~ speak = 1
+                        If I could study dogs, I think I’d be happy...
                 + [Let's head back to the Playground] -> Playground
 
 
         === LindaFriend ===
                 ~ encounter = 4
                 ~ dana = 1
-                ~ kimmy = 2
+                ~ kimmy = 1
                 ~ linda = 3
                 ~ speak = 0
                  ~ encounterchange = 0
                  
                 // Dana: 
                     Where does your auntie do her biology stuff?
-                    ~ speak = 0
-                // Linda: 
-                    She works with animals at Stoneham Zoo.
-                    ~ speak = 4
-                // Dana: 
-                    Whoa! That place is amazing!
-                    ~ speak = 0
                     ~ encounterchange = 1
-                // Kimmy: 
-                    What’s a zoo?
-                    ~ speak = 1
                 // Linda: 
-                    You’ve really never been to a zoo, Kimmy?
+                    ~ linda = 1
                     ~ speak = 4
-                // Kimmy: 
-                    No…
-                    ~ speak = 1
+                    She works with animals at Stoneham Zoo.
                 // Dana: 
-                    It’s ok, Kimmy. A zoo is a place where you can see wild animals. 
+                    ~ dana = 2
                     ~ speak = 0
+                    Whoa! That place is amazing!
+                // Kimmy: 
+                    ~ dana = 1
+                    ~ kimmy = 2
+                    ~ speak = 1
+                    What’s a zoo?
+                // Linda: 
+                    ~ kimmy = 1
+                    ~ speak = 4
+                    You’ve really never been to a zoo, Kimmy?
+                // Kimmy: 
+                    ~ speak = 1
+                    ~ kimmy = 3
+                    No…
+                // Dana: 
+                    ~ dana = 2
+                    ~ speak = 0
+                    It’s ok, Kimmy. A zoo is a place where you can see wild animals. 
                     Like elephants and stuff.
                 // Kimmy: 
-                    I thought that’s what a circus was?
+                    ~ kimmy = 1
                     ~ speak = 1
+                    I thought that’s what a circus was?
                 // Linda: 
-                    Animals in a circus are more like performers. They do tricks and stuff.
+                    ~ linda = 3
                     ~ speak = 4
+                    ~ kimmy = 3
+                    Animals in a circus are more like performers. They do tricks and stuff.
+                    ~ linda = 1
                     Animals in a zoo are studied by scientists, like my aunt.
                 // Dana: 
-                    I think I’d get a little nervous around the bigger animals. 
+                    ~ dana = 3
                     ~ speak = 0
+                    I think I’d get a little nervous around the bigger animals.
+                    ~ dana = 1
+                    ~ kimmy = 1
                     I’d want to work with the small ones--like penguins.
-                    She loves it. 
+                // Linda
                     ~ speak = 4
+                    She loves it. 
+                    ~ linda = 3
                     But she’s stressed a lot too. 
+                    ~ dana = 3
+                    ~ kimmy = 3
                     She’s working on her degree in Biology right now at college and she’s really busy.
                 //  Kimmy: 
-                    Your auntie sounds amazing… 
+                    ~ kimmy = 2
+                    ~ linda = 1
+                    ~ dana = 1
                     ~ speak = 1
+                    Your auntie sounds amazing… 
+                    ~ kimmy = 3
                     I don’t even know what I want to do when I grow up.
                 // Linda: 
-                    My auntie told me not to pick my career until I’m older, because I might find something else I like to do in high school. 
+                    ~ linda = 1
                     ~ speak = 4
+                    My auntie told me not to pick my career until I’m older, because I might find something else I like to do in high school. 
+                    ~ linda = 2
+                    ~ kimmy = 1
                     But I think I’ll still want to work with animals like she does.
                 // Dana: 
-                    My dad is an engineer, so sometimes I think that would be an interesting job, but I like a lot of other things too. 
+                    ~ linda = 1
                     ~ speak = 0
+                    My dad is an engineer, so sometimes I think that would be an interesting job, but I like a lot of other things too. 
+                    ~ dana = 2
                     I love fashion.
                 // Kimmy: 
-                    I like… candy. 
+                    ~ kimmy = 2
                     ~ speak = 1
+                    ~ dana = 1
+                    I like… candy. 
+                    ~ kimmy = 1
                     I wonder if I can make candy when I grow up…
                 // Linda: 
-                    Auntie says I can do anything, so I bet you can make candy. 
+                    ~ linda = 2
                     ~ speak = 4
+                    Auntie says I can do anything, so I bet you can make candy. 
                     That’s someone’s job somewhere.
                 // Dana: 
+                    ~ dana = 2
+                    ~ linda = 1
+                    ~ speak = 0
                     Actually, I think I want to be a mom.
-                    ~ speak = 0
                 // Kimmy: 
-                    I love moms.
+                    ~ kimmy = 2
                     ~ speak = 1
+                    I love moms.
                 // Linda: 
+                    ~ linda = 2
+                    ~ dana = 1
+                    ~ speak = 4
                     I want to be a dog mom.
-                    ~ speak = 4
                 // Dana: 
-                    I’m afraid of dogs…
+                    ~ dana = 3
+                    ~ linda = 1
+                    ~ kimmy = 1
                     ~ speak = 0
+                    I’m afraid of dogs…
                 // Linda: 
-                    Dogs are just as afraid of you. 
+                    ~ linda = 3
                     ~ speak = 4
+                    Dogs are just as afraid of you. 
+                    ~ linda = 1
+                    ~ dana = 1
                     If you’re nice to them, you have nothing to worry about.
                 // Dana: 
+                    ~ dana = 3
+                    ~ speak = 0
                     What if one is chasing me?
-                    ~ speak = 0
                 // Linda: 
-                    If a dog chases me, I stop and pet it.
+                    ~ linda = 2
                     ~ speak = 4
+                    If a dog chases me, I stop and pet it.
                 // Kimmy: 
-                    There’s no mean dogs...
+                    ~ linda = 1
+                    ~ kimmy = 2
                     ~ speak = 1
+                    ~ dana = 1
+                    There’s no mean dogs...
                 // Dana: 
-                    I got chased once and had to climb a tree to escape… 
+                    ~ dana = 3
                     ~ speak = 0
+                    I got chased once and had to climb a tree to escape… 
+                    ~ dana = 2
                     I guess I’ll try petting next time.
                 + [Let's head back to the Playground] 
                 -> Playground
@@ -844,12 +954,10 @@ The playground is always exciting!
     === EndofDay ===
         ~ encounter = 6
         ~ speak = 1
-         ~ encounterchange = 1
-        We made friends with everyone! Hurray! -> DONE
-        
-        
-        
-        
+         ~ encounterchange = 0
+        We made friends with everyone! Hurray!
+        ~ encounterchange = 1
+        Press Escape to Restart! -> DONE
         
         
     // This is the end of the text adventure. I hope everyone had fun!
